@@ -11,9 +11,10 @@ services:
     environment:
       - TZ=Europe/Budapest
       - TRACCAR_BASE_URL=https://traccar.example.com
-      - POLLING_INTERVAL=1800
-      #- EMAIL_HOST=smtp.example.com
-      #- EMAIL_PORT=587
-      #- EMAIL_USER=user@example.com
-      #- EMAIL_PASS=yourpassword
-      #- EMAIL_TO=alert@example.com
+      - POLLING_INTERVAL=900
+      - ANISETTE_URL=http://anisette:6969
+      - EMAIL_HOST=smtp.example.com
+      - EMAIL_PORT=587
+      - EMAIL_USER=user@example.com
+      - EMAIL_PASS=yourpassword
+      - EMAIL_TO=alerts@example.com
