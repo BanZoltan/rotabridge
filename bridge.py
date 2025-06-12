@@ -81,14 +81,16 @@ def load_all_keys() -> Dict[str, List[Dict[str, str]]]:
                 send_error_email("FindMy Bridge - privát kulcsos keyfile hiba", f"Hiba a file ({file}): {e}")
     return keys_by_id
 
-# --- DEDUPLIKÁLÁS persistent_data-val ---
-def deduplicate_reports_with_persistence(new_reports: List[Dict[str, Any]], uploaded: List[Dict[str, Any]], pending: List[Dict[str, Any]]) -> List[Dict[str, Any]]:
-    seen = {
-        (r["id"], r["timestamp"])
-        for r in uploaded + pending
-    }
-    return [r for r in new_reports if (r["id"], r["timestamp"]) not in seen]
-
+# --- DEDUPLIKÁLÁS egyszerű módon ---
+def deduplicate_reports(reports: List[Dict[str, Any]]) -> List[Dict[str, Any]]:
+    seen = set()
+    unique_reports = []
+    for report in reports:
+        key = (report["lat"], report["lon"], report["timestamp"])
+        if key not in seen:
+            seen.add(key)
+            unique_reports.append(report)
+    return unique_reports
 
 # --- FINDMY API MOCK/VALÓS HÍVÁS ---
 def fetch_location_from_apple(adv_key: str, private_key: str, hashed_private_key: str) -> List[Dict[str, Any]]:
