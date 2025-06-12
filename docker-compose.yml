@@ -1,0 +1,21 @@
+
+version: "3.9"
+services:
+  bridge:
+    image: banzoli/findmy-traccar-bridge:latest
+    container_name: findmy-rotating-bridge
+    restart: unless-stopped
+    volumes:
+      - ./bridge.py:/bridge/bridge.py:ro
+      - ./device.json:/bridge/device.json:ro
+      - ./anisette:/bridge/anisette:ro
+      - ./data:/bridge/data
+    environment:
+      - TZ=Europe/Budapest
+      - TRACCAR_BASE_URL=https://traccar.example.com
+      - POLLING_INTERVAL=300
+      - EMAIL_HOST=smtp.example.com
+      - EMAIL_PORT=587
+      - EMAIL_USER=user@example.com
+      - EMAIL_PASS=yourpassword
+      - EMAIL_TO=alert@example.com
