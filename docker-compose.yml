@@ -1,5 +1,3 @@
-
-version: "3.9"
 services:
   bridge:
     image: banzoli/findmy-traccar-bridge:latest
@@ -13,9 +11,9 @@ services:
     environment:
       - TZ=Europe/Budapest
       - TRACCAR_BASE_URL=https://traccar.example.com
-      - POLLING_INTERVAL=300
-      - EMAIL_HOST=smtp.example.com
-      - EMAIL_PORT=587
-      - EMAIL_USER=user@example.com
-      - EMAIL_PASS=yourpassword
-      - EMAIL_TO=alert@example.com
+      - POLLING_INTERVAL=1800
+      #- EMAIL_HOST=smtp.example.com
+      #- EMAIL_PORT=587
+      #- EMAIL_USER=user@example.com
+      #- EMAIL_PASS=yourpassword
+      #- EMAIL_TO=alert@example.com
