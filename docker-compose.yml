@@ -1,7 +1,7 @@
 services:
   bridge:
     image: banzoli/findmy-traccar-bridge:latest
-    container_name: findmy-rotating-bridge
+    container_name: rotabridge
     restart: unless-stopped
     volumes:
       - ./bridge.py:/bridge/bridge.py:ro
